@@ -10,7 +10,7 @@ let servicePrice1 = +prompt("Сколько это будет стоить?");
 let service2 = prompt("Какой дополнительный тип услуги нужен?");
 let servicePrice2 = +prompt("Сколько это будет стоить?");
 let fullPrice = screenPrice + servicePrice1 + servicePrice2;
-let servicePercentPrice = Math.ceil(fullPrice - rollBack);
+let servicePercentPrice = Math.ceil(fullPrice - (fullPrice * (rollBack/100)));
 
 console.log(servicePercentPrice);
 
