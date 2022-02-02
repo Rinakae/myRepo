@@ -1,14 +1,14 @@
 'use strict';
 
-let title = prompt("Как называется Ваш проект?", "   проеЕНТп");
+let title = prompt("Как называется Ваш проект?");
 let screens = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные, Интерактивные");
 let screenPrice = +prompt("Сколько будет стоить данная работа?", "1200");
 let rollBack = 10;
 let adaptive = confirm("Нужен ли адаптив на сайте?");
-let service1 = prompt("Какой дополнительный тип услуги нужен?", "модуль");
-let servicePrice1 = +prompt("Сколько это будет стоить?", "5600");
-let service2 = prompt("Какой дополнительный тип услуги нужен?", "тип 2");
-let servicePrice2 = +prompt("Сколько это будет стоить?", "9000");
+let service1 = prompt("Какой дополнительный тип услуги нужен?");
+let servicePrice1 = +prompt("Сколько это будет стоить?");
+let service2 = prompt("Какой дополнительный тип услуги нужен?");
+let servicePrice2 = +prompt("Сколько это будет стоить?");
 let fullPrice; 
 let servicePercentPrice;
 let allServicePrices;
