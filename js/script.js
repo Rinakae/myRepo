@@ -1,21 +1,21 @@
 'use strict';
 
 const title = document.getElementsByTagName("h1")[0];
-const handlerBtn = document.getElementsByClassName("handler_btn");
+const buttonCalc = document.getElementsByClassName("handler_btn")[0];
+const buttonDump = document.getElementsByClassName("handler_btn")[1];
 const buttonPlus = document.querySelector(".screen-btn");
 const otherItemsPercent = document.querySelectorAll(".other-items.percent");
 const otherItemsNumber = document.querySelectorAll(".other-items.number");
-const inputRange = document.querySelectorAll(".rollback [type=range]");
-const spanRangeValeu = document.querySelectorAll(".rollback .range-value");
+const inputRange = document.querySelector(".rollback [type=range]");
+const spanRangeValeu = document.querySelector(".rollback .range-value");
 const totalInputs = document.getElementsByClassName("total-input");
-const input1 = totalInputs[0];
-const input2 = totalInputs[1];
-const input3 = totalInputs[2];
-const input4 = totalInputs[3];
-const input5 = totalInputs[4];
+const totalInput = totalInputs[0];
+const totalCount = totalInputs[1];
+const totalCountOther = totalInputs[2];
+const totaFullCount = totalInputs[3];
+const totalCountRollback = totalInputs[4];
 
 let screens = document.querySelectorAll(".screen");
-
 
 const isNumber = function(num) {
   return !isNaN(parseFloat(num)) && isFinite(num);
@@ -130,4 +130,3 @@ const appData = {
 };
 
 appData.start();
-
