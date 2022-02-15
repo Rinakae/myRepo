@@ -7,12 +7,12 @@ const buttonPlus = document.querySelector(".screen-btn");
 const otherItemsPercent = document.querySelectorAll(".other-items.percent");
 const otherItemsNumber = document.querySelectorAll(".other-items.number");
 const inputRange = document.querySelector(".rollback [type=range]");
-const spanRangeValeu = document.querySelector(".rollback .range-value");
+const spanRangeValue = document.querySelector(".rollback .range-value");
 const totalInputs = document.getElementsByClassName("total-input");
 const totalInput = totalInputs[0];
 const totalCount = totalInputs[1];
 const totalCountOther = totalInputs[2];
-const totaFullCount = totalInputs[3];
+const totalFullCount = totalInputs[3];
 const totalCountRollback = totalInputs[4];
 
 let screens = document.querySelectorAll(".screen");
