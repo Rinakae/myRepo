@@ -91,7 +91,7 @@ const appData = {
 
     console.log(appData.screens);
 
-    if(appData.screens.find(item => item.price === 0 || item.coount === 0)) {
+    if(appData.screens.find(item => item.price === 0)) {
       return false;
     } else {
       return true;
@@ -141,9 +141,16 @@ const appData = {
       appData.servicePricesPercent += appData.screenPrice * (appData.servicesPercent[key]/100);
     }
 
+    /*
     for(let key in appData.screens) {
       appData.numberScreens += appData.screens[key].count;
     } 
+    ---чаще использовать reduce вместо for для массивов!---
+    */
+
+    appData.numberScreens = appData.screens.reduce(function(acc, item) { 
+      return acc + item.count;
+     }, 0);
 
     appData.fullPrice = +appData.screenPrice + appData.servicePricesNumber + appData.servicePricesPercent;
 
@@ -156,9 +163,8 @@ const appData = {
 
   getRollBack: function() {    
     inputRange.addEventListener("input", function(event) { 
-    inputRangeValue.textContent = event.target.value;
-    appData.rollBack = event.target.value; 
-    
+    inputRangeValue.textContent = event.target.value + "%";
+    appData.rollBack = event.target.value;     
     });
   },
 
