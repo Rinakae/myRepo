@@ -38,6 +38,7 @@ const appData = {
     startBtn.addEventListener("click", appData.checkSelectedScreens);
     buttonPlus.addEventListener("click", appData.addScreenBlock);
     appData.getRollBack();
+       
   },
 
   checkSelectedScreens: function () {
@@ -56,11 +57,18 @@ const appData = {
   start: function() {  
     appData.addServices();
     appData.addScreens();
+    appData.checkInputs();
     appData.addPrices();    
     
     //appData.logger();     
     appData.showResult();
-    
+    appData.getTotalCountRollbackValue();
+  },
+
+  getTotalCountRollbackValue: function() {
+    inputRange.addEventListener("input", function (event) {
+    totalCountRollback.value = (appData.fullPrice - (appData.fullPrice * (event.target.value/100)));    
+    });
   },
 
   showResult: function() {
@@ -141,30 +149,25 @@ const appData = {
       appData.servicePricesPercent += appData.screenPrice * (appData.servicesPercent[key]/100);
     }
 
-    /*
-    for(let key in appData.screens) {
-      appData.numberScreens += appData.screens[key].count;
-    } 
-    ---чаще использовать reduce вместо for для массивов!---
-    */
-
-    appData.numberScreens = appData.screens.reduce(function(acc, item) { 
-      return acc + item.count;
-     }, 0);
-
     appData.fullPrice = +appData.screenPrice + appData.servicePricesNumber + appData.servicePricesPercent;
 
     appData.servicePercentPrice = Math.ceil(appData.fullPrice - (appData.fullPrice * (appData.rollBack/100)));
 
-    
     console.log(appData.numberScreens);
     
+  },
+
+  checkInputs: function() {
+    appData.numberScreens = appData.screens.reduce(function(acc, item) { 
+      return acc + item.count;
+     }, 0);
   },
 
   getRollBack: function() {    
     inputRange.addEventListener("input", function(event) { 
     inputRangeValue.textContent = event.target.value + "%";
-    appData.rollBack = event.target.value;     
+    appData.rollBack = event.target.value;  
+        
     });
   },
 
