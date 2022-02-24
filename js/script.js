@@ -67,7 +67,7 @@ const appData = {
 
   getTotalCountRollbackValue: function() {
     inputRange.addEventListener("input", function (event) {
-    totalCountRollback.value = (appData.fullPrice - (appData.fullPrice * (event.target.value/100)));    
+    totalCountRollback.value = Math.ceil(appData.fullPrice - (appData.fullPrice * (event.target.value/100)));    
     });
   },
 
