@@ -17,6 +17,10 @@ const totalCountOther = document.getElementsByClassName("total-input")[2];
 const fullTotalCount = document.getElementsByClassName("total-input")[3];
 const totalCountRollback = document.getElementsByClassName("total-input")[4];
 
+const cms = document.querySelector("#cms-open");
+const cmsVariants =document.querySelector(".hidden-cms-variants");
+const cmsSelect = cmsVariants.querySelector(".main-controls__input");
+
 let screens = document.querySelectorAll(".screen");
 
 const appData = {
@@ -32,9 +36,11 @@ const appData = {
   servicePercentPrice: 0,
   servicePricesPercent: 0,
   servicePricesNumber: 0,
+  wordPressPercent: 0,
 
   init: function() {
     this.addTitle();
+    cms.addEventListener("click", this.openCms.bind(this));
     startBtn.addEventListener("click", this.checkSelectedScreens.bind(this));
     buttonPlus.addEventListener("click", this.addScreenBlock.bind(this));
     this.getRollBack();
@@ -148,7 +154,8 @@ const appData = {
       this.servicePricesPercent += this.screenPrice * (this.servicesPercent[key]/100);
     }
 
-    this.fullPrice = +this.screenPrice + this.servicePricesNumber + this.servicePricesPercent;
+    this.fullPrice = +this.screenPrice + this.servicePricesNumber + this.servicePricesPercent + 
+    (((this.screenPrice + this.servicePricesNumber + this.servicePricesPercent) * this.wordPressPercent) / 100);
 
     this.servicePercentPrice = Math.ceil(this.fullPrice - (this.fullPrice * (this.rollBack/100)));
 
@@ -175,6 +182,26 @@ const appData = {
     //for (let key in appData) {
     //  console.log(key + " : " + appData[key]);
     //}
+  },
+
+  openCms: function() {
+    if (cms.checked) {
+      cmsVariants.style.display = "flex";
+
+      const select = document.querySelector("#cms-select");
+
+      select.addEventListener("change", event => {
+        if (event.target.value == "other") {
+          cmsSelect.style.display = "block";
+        } else if (event.target.value == "50") {
+          cmsSelect.style.display = "none";
+          this.wordPressPercent = event.target.value;
+        }
+      });
+
+    } else {
+      cmsVariants.style.display = "none";
+    }
   },
 
   reset: function() {
@@ -267,7 +294,8 @@ const appData = {
     this.fullPrice = 0;
     this.servicePercentPrice = 0;
     this.servicePricesPercent = 0;
-    this.servicePricesNumber = 0;    
+    this.servicePricesNumber = 0; 
+    this.wordPressPercent = 0;   
   },
 
   cleanCheckbox: function() {
@@ -285,6 +313,10 @@ const appData = {
          check.checked = false;
       }
     });
+
+    cms.checked = false;
+    cmsVariants.style.display = "none";
+    cmsSelect.style.display = "none";
   },
 
   addScreen: function() {
