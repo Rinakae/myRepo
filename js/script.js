@@ -37,6 +37,7 @@ const appData = {
   servicePricesPercent: 0,
   servicePricesNumber: 0,
   wordPressPercent: 0,
+   
 
   init: function() {
     this.addTitle();
@@ -189,10 +190,18 @@ const appData = {
       cmsVariants.style.display = "flex";
 
       const select = document.querySelector("#cms-select");
+      const otherInput = document.querySelector("#cms-other-input");
+      otherInput.value = "";
 
       select.addEventListener("change", event => {
         if (event.target.value == "other") {
           cmsSelect.style.display = "block";
+          otherInput.addEventListener("input", (event) => {            
+            this.wordPressPercent = event.target.value;
+            console.log(event.target.value);
+          });
+          
+          
         } else if (event.target.value == "50") {
           cmsSelect.style.display = "none";
           this.wordPressPercent = event.target.value;
@@ -295,7 +304,9 @@ const appData = {
     this.servicePercentPrice = 0;
     this.servicePricesPercent = 0;
     this.servicePricesNumber = 0; 
-    this.wordPressPercent = 0;   
+    this.wordPressPercent = 0;
+    
+       
   },
 
   cleanCheckbox: function() {
